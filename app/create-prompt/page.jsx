@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 
 const createPrompt = () => {
   const route = useRouter();
-  const session = useSession();
+  const { data: session } = useSession();
   const [post, setPost] = useState({
     tag: "",
     prompt: "",
@@ -17,13 +17,6 @@ const createPrompt = () => {
   const createSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-
-    console.log({
-      prompt: post.prompt,
-      userId: session?.user?.id,
-      tag: post.tag,
-    });
-
     try {
       const response = await fetch("api/prompt/new", {
         method: "POST",

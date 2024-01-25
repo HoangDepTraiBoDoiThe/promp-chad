@@ -15,7 +15,6 @@ const Nav = () => {
     const setupProviders = async () => {
       try {
         const response = await getProviders();
-        console.log(response); // Log the response to see what getProviders() is returning
         setProviders(response);
       } catch (error) {
         console.error(error); // Log any errors that occur during the execution of getProviders()

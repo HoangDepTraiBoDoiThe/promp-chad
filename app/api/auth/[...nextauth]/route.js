@@ -30,12 +30,10 @@ const handler = NextAuth({
         const exitingUser = await user.findOne({
           email: profile.email,
         });
-
-        console.log(`Name is ${profile.name}`);
         if (!exitingUser) {
           user.create({
             email: profile.email,
-            name: profile.name.replace(" ", "").toLowerCase(),
+            name: profile.name,
             password: profile.password,
             image: profile.picture,
           });
