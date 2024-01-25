@@ -4,7 +4,14 @@ import Image from "next/image";
 import { useState } from "react";
 
 const PrompCard = ({ post, handleTagClick }) => {
-  const [coppy, setCoppy] = useState("");
+  const [copy, setcopy] = useState("");
+  const handleCoppy = () => {
+    setcopy(post.prompt);
+    navigator.clipboard.writeText(post.prompt);
+    setTimeout(() => {
+      setcopy(""), 3000;
+    });
+  };
 
   return (
     <div className="prompt_card">
@@ -27,15 +34,16 @@ const PrompCard = ({ post, handleTagClick }) => {
             </p>
           </div>
         </div>
-        <div className="coppy_btn" onClick={() => {}}>
+        <div className="coppy_btn" onClick={() => handleCoppy}>
           <Image
             src={
-              coppy === post.prompt
-                ? "/assets/icons/tick.svg"
-                : "/assets/icons/coppy.svg"
+              copy === post.prompt
+                ? "/assets/icons/logo.svg"
+                : "/assets/icons/copy.svg"
             }
             width={20}
             height={20}
+            className="cursor-pointer"
           />
         </div>
       </div>
