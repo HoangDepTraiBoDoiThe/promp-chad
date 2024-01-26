@@ -9,6 +9,7 @@ import Profile from "@components/Profile";
 const MyProfile = () => {
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPrompts = async () => {
@@ -19,8 +20,12 @@ const MyProfile = () => {
     if (session?.user) fetchPrompts();
   }, []);
 
-  const handleEdit = () => {};
-  const handleDelete = async () => {};
+  const handleEdit = async (post) => {
+    router.push(`/update-prompt?id=${post._id}`);
+  };
+  const handleDelete = async (post) => {
+    router.push(`/delete-prompt?id=${post._id}`);
+  };
 
   return (
     <div>
@@ -29,7 +34,7 @@ const MyProfile = () => {
         desc="welcome to your profile."
         data={posts}
         handleEdit={handleEdit}
-        hancleDelete={handleDelete}
+        handleDelete={handleDelete}
       />
     </div>
   );

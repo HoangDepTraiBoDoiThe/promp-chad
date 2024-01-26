@@ -2,7 +2,7 @@
 
 import PrompCard from "./PrompCard";
 
-const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
+const Profile = ({ name, desc, data, handleDelete, handleEdit }) => {
   return (
     <section className="w-ful">
       <h1 className="head_text text-left">
@@ -14,10 +14,8 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
           <PrompCard
             key={post._id}
             post={post}
-            handEdit={() => handleEdit && handleEdit(post)}
-            handleDelete={() => {
-              handleDelete && handleDelete(post);
-            }}
+            handleEdit={() => handleEdit(post)}
+            handleDelete={() => handleDelete(post)}
           />
         ))}
       </div>
