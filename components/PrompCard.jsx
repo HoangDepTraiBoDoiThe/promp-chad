@@ -14,8 +14,8 @@ const PrompCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     setcopy(post.prompt);
     navigator.clipboard.writeText(post.prompt);
     setTimeout(() => {
-      setcopy(""), 3000;
-    });
+      setcopy("");
+    }, 3000);
   };
 
   return (
@@ -39,17 +39,18 @@ const PrompCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             </p>
           </div>
         </div>
-        <div className="copy_btn" onClick={() => handleCoppy}>
+        <div className="copy_btn" onClick={handleCoppy}>
           <Image
             src={
               copy === post.prompt
-                ? "/assets/icons/logo.svg"
+                ? "/assets/icons/tick.svg"
                 : "/assets/icons/copy.svg"
             }
             width={20}
             height={20}
             className="cursor-pointer"
           />
+          {console.log(copy === post.prompt)}
         </div>
       </div>
       <p className="my-4 font-satoshi text-sm text-gray-700">{post?.prompt}</p>
